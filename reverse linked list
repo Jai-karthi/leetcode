@@ -1,0 +1,10 @@
+def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        prevnode = None
+        currentnode = head
+        while(currentnode):
+            nextnode = currentnode.next
+            currentnode.next = prevnode
+            prevnode = currentnode
+            currentnode = nextnode
+        return prevnode
+
