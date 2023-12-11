@@ -1,0 +1,11 @@
+class Solution:
+    def findSpecialInteger(self, arr: List[int]) -> int:
+        a = 0
+        ans = Counter(arr)
+        for i in ans:
+            a = max(a,ans[i])
+            
+        for i in ans:
+            if ans[i] == a:
+                return i
+                break
