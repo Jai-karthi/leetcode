@@ -1,0 +1,7 @@
+class Solution:
+    def halvesAreAlike(self, s: str) -> bool:
+        n = len(s) // 2
+        a = [ s[i] for i in range(n) if s[i] in {'a','e','i','o','u', 'A', 'E', 'I', 'O', 'U'} ]
+        b = [ s[i] for i in range(n,len(s)) if s[i] in {'a','e','i','o','u', 'A', 'E', 'I', 'O', 'U'} ]
+        return len(a) == len(b)
+        
