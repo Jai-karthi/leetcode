@@ -1,0 +1,16 @@
+class Solution:
+    def findWinners(self, matches):
+        count = [0] * 100001
+        ans = [[],[]]
+        
+        for i , j in matches:
+            count[j] += 1
+            
+        for i,j in matches:
+            if count [j] == 1:
+                ans[1].append(j)
+            if count[i] == 0:
+                count [i] = -1
+                ans[0].append(i)
+                
+        return sorted(ans[0]),sorted(ans[1])
