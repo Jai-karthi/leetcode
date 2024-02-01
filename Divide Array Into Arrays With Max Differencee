@@ -1,0 +1,12 @@
+class Solution:
+    def divideArray(self, nums: List[int], k: int) -> List[List[int]]:
+        nums = sorted(nums)
+        n = len(nums) 
+        arr  = []
+        for i in range(0,n,3):
+            if abs(nums[i:i+3][0] - nums[i:i + 3][2]) <= k:
+                arr.append(nums[i:i+3])
+            else:
+                arr.clear()
+                break
+        return arr
