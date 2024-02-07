@@ -1,0 +1,10 @@
+class Solution:
+    def frequencySort(self, s: str) -> str:
+        d = Counter(s)
+        ans = ''
+        for i in reversed(sorted(d.values())):
+            for k,v in d.items():
+                if v == i:
+                    ans += k * i
+                    d[k] = 0
+        return ans
