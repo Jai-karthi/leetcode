@@ -1,0 +1,26 @@
+class Solution:
+    def cherryPickup(self, grid: List[List[int]]) -> int:
+        c = len(grid)
+        r = len(grid[0])
+        has_cache = [[[False] * r for _ in range(r)] for _ in range(c)]
+        cache =  [[[None] * r for _ in range(r)] for _ in range(c)]
+        def grid_m(x,dl,dr):
+            if x == c :
+                return 0
+
+            if has_cache[x][dl][dr] :
+                return cache[x][dl][dr]
+            score = grid[x][dl] + grid[x][dr]
+            if dl == dr:
+                score = grid[x][dl]
+
+            best = score
+            for direction1 in [-1,0,1]:
+                if 0 <= dl + direction1 < r:
+                    for direction2 in [-1,0,1]:
+                        if 0 <= dr + direction2 < r:
+                            best = max(best,grid_m(x + 1,dl + direction1 ,dr + direction2) + score)
+            has_cache[x][dl][dr] = True
+            cache[x][dl][dr] = best
+            return best
+        return grid_m(0,0,r-1)
