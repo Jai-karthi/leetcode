@@ -1,0 +1,10 @@
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        d = Counter(nums)
+        an = set(nums)
+        ans = max(list(Counter(nums).values()))
+        for i in an:
+            if d[i] == ans:
+                return i
+
+        
