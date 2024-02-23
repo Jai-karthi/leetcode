@@ -1,0 +1,14 @@
+class Solution:
+    def combinationSum(self, nums: List[int], target: int) -> List[List[int]]:
+        def recursion(index,target,dist,num,ans):
+            if index == len(nums):
+                if target == 0:
+                    ans.append(dist[:])
+                return 
+            if num[index] <= target:
+                dist.append(nums[index])
+                recursion(index,target - nums[index],dist,num,ans)
+                dist.pop()
+            recursion(index + 1, target,dist,num,ans)
+            return ans
+        return recursion(0,target,[],nums,[])
