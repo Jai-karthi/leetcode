@@ -1,0 +1,6 @@
+class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        def dun(a):
+            return a ** 2
+            
+        return sorted(map(dun,nums))
