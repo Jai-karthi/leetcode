@@ -1,0 +1,18 @@
+class Solution:
+    def bagOfTokensScore(self, nums: List[int], p: int) -> int:
+        nums.sort()
+        l = 0
+        r = len(nums) - 1
+        score = 0
+        while l <= r:
+            if p >= nums[l]:
+                score += 1
+                p -= nums[l]
+                l += 1
+            elif score > 0 and l < r:
+                score -= 1
+                p += nums[r]
+                r -= 1
+            else:
+                return score
+        return score
