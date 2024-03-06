@@ -1,0 +1,13 @@
+class Solution:
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        maxx = float('-inf')
+        def tree(root):
+            nonlocal maxx
+            if not root:
+                return 0
+            left =  max(tree(root.left),0)
+            right = max(tree(root.right),0)
+            maxx = max(maxx,root.val + left + right)
+            return root.val + max(left,right)
+        tree(root)
+        return maxx
