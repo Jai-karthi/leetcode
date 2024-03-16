@@ -1,0 +1,19 @@
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        
+        one = zero = 0
+        has  = {}
+        res = 0
+        for i,num in enumerate(nums):
+            if num == 0 :
+                zero += 1
+            else:
+                one += 1
+            if one - zero not in has:
+                has[one-zero] = i
+            if  one == zero:
+                res = one + zero
+            else:
+                res = max(res,i - has[one - zero])
+                
+        return res
