@@ -1,0 +1,11 @@
+class Solution:
+    def countSubarrays(self, nums: List[int], k: int) -> int:
+        max_element = max(nums)
+        index_max_element = []
+        ans = 0
+        for index, n in enumerate(nums):
+            if n == max_element:
+                index_max_element.append(index)
+            if len(index_max_element) >= k:
+                ans += index_max_element[-k] + 1
+        return ans
