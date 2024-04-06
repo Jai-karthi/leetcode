@@ -1,0 +1,14 @@
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        cnt=0
+        dic={}
+        sum = 0
+        for i in nums:
+            sum += i
+            if sum-k in dic:
+                cnt+=dic[sum-k]
+            if sum==k:cnt+=1
+            if sum in dic:dic[sum]+=1
+            else:dic[sum]=1
+        return cnt
+            
