@@ -1,0 +1,15 @@
+class Solution:
+    def deckRevealedIncreasing(self, deck: List[int]) -> List[int]:
+        from collections import deque
+        deck.sort()
+        d = deque()
+        for i in range(len(deck)):
+            d.append(i)
+        result = [0] * len(deck)
+        for card in deck:
+            result[d.popleft()]  = card
+            if d:
+                d.append(d.popleft())
+                
+        return result
+    
