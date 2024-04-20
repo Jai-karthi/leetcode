@@ -1,0 +1,31 @@
+
+Given two strings word1 and word2, return the minimum number of operations required to convert word1 to word2.
+
+You have the following three operations permitted on a word:
+
+Insert a character
+Delete a character
+Replace a character
+class Solution:
+    def minDistance(self, word1: str, word2: str) -> int:
+        n = len(word1)
+        m = len(word2)
+        dp = [[-1 for _ in range(m)] for _ in range(n)]
+
+        def Edit_dis(i, j, w1, w2, dp):
+            if i < 0:
+                return j + 1
+            if j < 0:
+                return i + 1
+            if dp[i][j] != -1:
+                return dp[i][j]
+            if w1[i] == w2[j]:
+                dp[i][j] = Edit_dis(i - 1, j - 1, w1, w2, dp)
+            else:
+                dp[i][j] = 1 + min(
+                    Edit_dis(i - 1, j - 1, w1, w2, dp),
+                    min(Edit_dis(i - 1, j, w1, w2, dp), Edit_dis(i, j - 1, w1, w2, dp)),
+                    )
+            return dp[i][j]
+            
+        return Edit_dis(n - 1, m - 1, word1, word2, dp)
