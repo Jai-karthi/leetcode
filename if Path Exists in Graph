@@ -1,0 +1,24 @@
+class Solution:
+    def validPath(
+        self, n: int, edges: List[List[int]], src: int, destination: int
+    ) -> bool:
+        visited = [] 
+        d = deque()
+        graph = defaultdict(list)
+        d.append(src)
+        for src, des in edges:
+            graph[src].append(des)
+            graph[des].append(src)
+        while d:
+            node = d.popleft()
+            if node == destination:
+                return True
+                break
+            if node not in visited:
+                visited.append(node)
+                for adj in graph[node]:
+                    d.append(adj)
+        return False
+            
+
+        
