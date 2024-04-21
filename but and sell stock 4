@@ -1,0 +1,18 @@
+class Solution:
+    def maxProfit(self, k: int, prices: List[int]) -> int:
+        n = len(prices)
+        dp = [[[(-1) for _ in range(k + 1)] for _ in range(2)] for _ in range(n)]
+        def f(ind, n, price, k, buy, dp):
+            if ind == n or k == 0:
+                return 0
+            if dp[ind][buy][k] != -1:
+                return dp[ind][buy][k]
+            if buy:
+                dp[ind][buy][k] = max(-price[ind] + f(ind + 1, n, price, k, 0, dp),0 + f(ind + 1, n, price, k, 1, dp))
+            else:
+                dp[ind][buy][k] = max(
+                    price[ind] + f(ind + 1, n, price, k - 1, 1, dp),
+                    0 + f(ind + 1, n, price, k, 0, dp))
+            return dp[ind][buy][k]
+
+        return f(0,n,prices,k,1,dp)
