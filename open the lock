@@ -1,0 +1,27 @@
+class Solution:
+    def openLock(self, deadends: List[str], target: str) -> int:
+        if "0000" in deadends:
+            return -1
+
+        def child(chid):
+            res = []
+            for i in range(4):
+                digit = str((int(chid[i]) + 1) % 10)
+                res.append(chid[:i] + digit + chid[i + 1 :])
+                digit = str((int(chid[i]) - 1 + 10) % 10)
+                res.append(chid[:i] + digit + chid[i + 1 :])
+            return res
+            
+        q = deque()
+        q.append(["0000", 0])
+        visited = set(deadends)
+        while q:
+            lockkey, turn = q.popleft()
+            if lockkey == target:
+                return turn
+            for ch in child(lockkey):
+                if ch not in visited:
+                    visited.add(ch)
+                    q.append([ch, turn + 1])
+
+        return -1
