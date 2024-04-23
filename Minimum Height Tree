@@ -1,0 +1,24 @@
+class Solution:
+    def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
+        if n == 1:
+            return [0]
+        graph = defaultdict(list)
+        for src, to in edges:
+            graph[src].append(to)
+            graph[to].append(src)
+        leaves = deque()
+        thins = {}
+        for src, de in graph.items():
+            if len(de) == 1:
+                leaves.append(src)
+            thins[src] = len(de)
+        while leaves:
+            if n <= 2:
+                return list(leaves)
+            for _ in range(len(leaves)):
+                node = leaves.popleft()
+                n -= 1
+                for nei in graph[node]:
+                    thins[nei] -= 1
+                    if thins[nei] == 1:
+                        leaves.append(nei)
