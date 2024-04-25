@@ -1,0 +1,26 @@
+class Solution:
+    def longestIdealString(self, s: str, k: int) -> int:
+        # def f(i , prev,dp):
+        #     if i == n : return 0
+        #     if dp[i][prev] != -1: return dp[i][prev]
+        #     res = f(i + 1, prev,dp)
+        #     if prev == -1 or abs (ord(s[i]) -  ord(s[prev])) <= k:
+        #         res = max(res, 1 + f(i + 1 , i,dp))
+        #     dp[i][prev] = res
+        #     return dp[i][prev]
+        
+        # n = len(s)
+        # dp = [[-1 for _ in range(n + 1)] for _ in range(n + 1)]
+        
+        # return f(0,-1,dp)
+        n = len(s)
+        dp = [ 0 for _ in range(26)]
+        for curr in s:
+            cur = ord(curr) - 97
+            longest = 1
+            for prev in range(26):
+                if abs(cur - prev) <= k:
+                    longest = max(longest, 1 + dp[prev])
+            dp[cur] = max(dp[cur],longest)
+            
+        return max(dp)
