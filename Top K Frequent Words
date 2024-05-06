@@ -1,0 +1,8 @@
+class Solution:
+    def topKFrequent(self, wordss: List[str], k: int) -> List[str]:
+        words = {}
+        for word in wordss:
+            words[word] = words.get(word, 0) + 1
+        tuples = [(word, f) for word, f in words.items()]
+        tuples.sort(key=lambda item: (-item[1],item[0]))
+        return [t[0] for t in tuples[:k]]
