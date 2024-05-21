@@ -1,0 +1,19 @@
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        # def subs(nums,subsets,sets,ind):
+        #     if ind == len(nums) :
+        #         subsets.append(sets[:])
+        #         return 
+        #     sets.append(nums[ind])
+        #     take = subs(nums,subsets,sets,ind + 1)
+        #     sets.pop()
+        #     notaake = subs(nums,subsets,sets,ind + 1)
+        #     return subsets
+
+        # subsets = []    
+        # return subs(nums,subsets,[],0)
+
+        sets = [[]]
+        for num in nums:
+            sets +=[ [num] + n  for n in sets]
+        return sets
