@@ -1,0 +1,13 @@
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        count = collections.Counter(s)
+        ans = 0
+        odd = False
+        for n in count:
+            if count[n] % 2 == 0:
+                ans += count[n]
+            else:
+                odd =  True
+                ans += count[n] - 1
+        if odd: ans += 1
+        return ans 
