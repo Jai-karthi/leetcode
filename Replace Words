@@ -1,0 +1,15 @@
+class Solution:
+    def replaceWords(self, dictionary: List[str], sentence: str) -> str:
+        creatdict = {}
+        set_dict =  set(dictionary)
+        sen_split = sentence.split()
+        def cam(word,sent):
+            for i in range(len(word)):
+                root = word[:i]
+                if root in sent:
+                    return root
+            return word
+        for s_t in range(len(sen_split)):
+            sen_split[s_t] = cam(sen_split[s_t],set_dict)
+            
+        return " ".join(sen_split)
