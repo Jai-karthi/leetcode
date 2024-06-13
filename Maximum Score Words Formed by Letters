@@ -1,0 +1,27 @@
+class Solution:
+    def maxScoreWords(
+        self, words: List[str], letters: List[str], score: List[int]) -> int:
+        letter_cnt = Counter(letters)
+        def canform(word, lettercnt):
+            wordcnt = Counter(word)
+            for i in word:
+                if wordcnt[i] > lettercnt[i]:return False
+            return True
+        def getscore(wor):
+            scores = 0
+            for a in wor:
+                scores += score[ord(a) - ord("a")]
+            return scores
+            
+        def backtrack(i):
+            if i == len(words):
+                return 0
+            res = backtrack(i + 1)
+            if canform(words[i], letter_cnt):
+                for j in words[i]:
+                    letter_cnt[j] -= 1
+                res = max(res, getscore(words[i]) + backtrack(i + 1))
+                for j in words[i]:
+                    letter_cnt[j] += 1
+            return res
+        return backtrack(0)
