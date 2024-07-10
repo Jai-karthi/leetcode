@@ -1,0 +1,10 @@
+class Solution:
+    def minOperations(self, logs: List[str]) -> int:
+        l = 0
+        for lo in logs:
+            if lo == "../":
+                l = max(0,l - 1) 
+            elif lo != "./":
+                l += 1
+
+        return l
