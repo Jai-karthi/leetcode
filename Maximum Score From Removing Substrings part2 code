@@ -1,0 +1,21 @@
+class Solution:
+    def maximumGain(self, s: str, x: int, y: int) -> int:
+        def removepair(pair, points):
+            nonlocal s
+            score = 0
+            stack = []
+            
+            for char in s:
+                if stack and stack[-1] == pair[0] and char == pair[1]:
+                    stack.pop()
+                    score += points
+                else:
+                    stack.append(char)
+            s = "".join(stack)
+            return score
+        score  = 0
+        pair = "ab" if x > y else "ba"
+        score += removepair(pair, max(x, y))
+        score += removepair(pair[::-1], min(x, y))
+
+        return score
