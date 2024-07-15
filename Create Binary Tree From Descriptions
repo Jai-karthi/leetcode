@@ -1,0 +1,27 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def createBinaryTree(self, descriptions: List[List[int]]) -> Optional[TreeNode]:
+        node = {}
+        children = set()
+        for fro , to , isleft in descriptions:
+            children.add(to)
+            if fro not in node :
+                node[fro] = TreeNode(fro)
+            if to not in node:
+                node[to] = TreeNode(to)
+            
+            if isleft:
+                node[fro].left = node[to]
+            else:
+                node[fro].right = node[to] 
+
+            
+
+        for per,to,cel in descriptions:
+            if per not in children:
+                return node[per]
