@@ -1,0 +1,20 @@
+class Solution:
+    def minHeightShelves(self, books: List[List[int]], shelfWidth: int) -> int:
+        cache = {}
+        def helper(i):
+            if i == len(books): return 0 
+            if i in cache :
+                return cache[i]
+            cur_width = shelfWidth
+            maxhight = 0
+            cache[i] = float('inf')
+            for j in range(i,len(books)):
+                widht,hight = books[j]
+                if cur_width < widht:
+                    break
+                cur_width -= widht
+                maxhight = max(maxhight,hight)
+                cache[i] = min( cache[i], helper(j + 1) + maxhight)
+
+            return cache[i]
+        return helper(0)
