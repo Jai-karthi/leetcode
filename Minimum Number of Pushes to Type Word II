@@ -1,0 +1,15 @@
+class Solution:
+    def minimumPushes(self, word: str) -> int:
+
+        arr = [0] * 26
+        for wo in word:
+            arr[ord(wo) - ord('a')] += 1
+            
+        arr.sort(reverse=True)
+        t = 0
+        for i in range(26):
+            if not arr[i]:
+                break
+            t +=  (i // 8 + 1) * arr[i]
+            
+        return t
