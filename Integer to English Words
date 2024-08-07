@@ -1,0 +1,40 @@
+class Solution:
+    def numberToWords(self, num: int) -> str:
+        below_ten = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine","Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"]
+        below_hundred = ["", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"]
+        if num == 0:
+            return "Zero"
+
+
+        def get_str(hund):
+            res = []
+            digit = hund // 100
+            if  digit:
+                res.append(below_ten[digit] + ' Hundred')
+            last_two = hund % 100
+            if last_two  >= 20 :
+                tens , ones = last_two // 10 , last_two % 10
+                res.append(below_hundred[tens])
+                if ones:
+                    res.append(below_ten[ones])
+            elif last_two :
+                res.append(below_ten[last_two])
+           
+            return " ".join(res) 
+
+
+        def gethunder(num):
+            postfix = ['',' Thousand',' Million',' Billion']
+            res = []
+            i = 0
+            while num:
+                divide = num % 1000
+                get = get_str(divide)
+                if get:
+                    res.append(get + postfix[i])
+                num //= 1000
+                i += 1
+            res.reverse()
+            return  " ".join(res)
+
+        return gethunder(num)
