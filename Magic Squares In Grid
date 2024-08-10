@@ -1,0 +1,30 @@
+class Solution:
+    def numMagicSquaresInside(self, grid: List[List[int]]) -> int:
+        
+        def help(rown,coln):
+            visit = set()
+            for i in range(rown,rown + 3):
+                for j in range(coln,coln + 3):
+                    if grid[i][j] in visit or not (1 <= grid[i][j] <= 9):
+                        return 0
+                    visit.add(grid[i][j])
+            for i in range(rown,rown + 3):
+                if sum(grid[i][coln: coln + 3]) != 15:
+                    return 0
+            for i in range(coln,coln + 3):
+                if (grid[rown][i] + grid[rown + 1][i] + grid[rown + 2][i]) != 15:
+                    return 0
+            
+        
+            if (grid[rown][coln] + grid[rown + 1][coln + 1] + grid[rown + 2][coln + 2] != 15  or grid[rown][coln + 2] + grid[rown + 1][coln + 1] + grid[rown + 2][coln]  != 15):
+                return 0
+
+            return 1
+        row ,col = len(grid),len(grid[0])
+        res = 0
+        for r in range(row - 2):
+            for c in range(col - 2):
+                res += help(r,c)
+        return res
+            
+        
