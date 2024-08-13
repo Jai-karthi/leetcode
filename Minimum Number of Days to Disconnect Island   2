@@ -1,0 +1,33 @@
+class Solution:
+    def minDays(self, grid: List[List[int]]) -> int:
+        row , cols = len(grid) ,len(grid[0])
+        def dfs(r,c,visit):
+            if r  == row or c == cols or r < 0 or c < 0  or grid[r][c] == 0 or (r,c) in visit : return 
+            visit.add((r,c))
+            dfs(r + 1,c,visit)
+            dfs(r,c + 1,visit)
+            dfs(r - 1 ,c,visit)
+            dfs(r,c - 1,visit)
+        
+        def help_count():
+            visit  = set()
+            count  = 0 
+            for r in range(row):
+                for c in range(cols):
+                    if grid[r][c] and (r,c) not in visit  :
+                        dfs(r,c,visit)
+                        count += 1
+            return count
+            
+        if help_count() != 1:
+            return 0
+
+        for r in range(row):
+            for c in range(cols):
+                if grid[r][c] == 0:
+                    continue
+                grid[r][c] = 0
+                if help_count() != 1:
+                    return   1  
+                grid[r][c] = 1        
+        return 2    
