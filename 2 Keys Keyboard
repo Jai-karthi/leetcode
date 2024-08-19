@@ -1,0 +1,18 @@
+class Solution:
+    def minSteps(self, n: int) -> int:
+        cahce = {}
+        def helper(count,patch):
+            if count > n:
+                return 1000
+            if count == n:
+                return 0
+            if (count,patch) in cahce:
+                return cahce[(count,patch)]
+            t1 = 1 + helper(count + patch,patch)
+            t2 = 2 + helper(count + count,count)
+            
+            cahce[(count,patch)] =  min(t1,t2)
+            return cahce[(count,patch)]
+
+        if n == 1:return 0
+        return 1 + helper(1,1)
