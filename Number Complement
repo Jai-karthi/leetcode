@@ -1,0 +1,25 @@
+class Solution:
+    def findComplement(self, num: int) -> int:
+        if num == 2:
+            return 1
+        ans = ''
+        for i in  bin(num)[2:]:
+            if i == '1':
+                ans += '0'
+            else:
+                ans += '1'
+        binary_str = ans
+        # res  = 0  
+        # power = 0
+        # while s > 0 :
+        #     ids= s %  10
+        #     if ids == 1:
+        #         res += (2 ** power) + ids
+        #     power += 1
+        #     s //=  10
+        # return res 
+        decimal = 0
+        binary_str = binary_str[::-1]  # Reverse the string to process from right to left
+        for i in range(len(binary_str)):
+            decimal += int(binary_str[i]) * (2 ** i)
+        return decimal
