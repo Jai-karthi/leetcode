@@ -1,0 +1,25 @@
+from collections import defaultdict
+
+
+class Solution:
+    def removeStones(self, stones: List[List[int]]) -> int:
+        n = len(stones)
+        visited = [False] * n
+        adjacent = defaultdict(list)
+        for i in range(n):
+            for j in range(i + 1, n):
+                if stones[i][0] == stones[j][0] or stones[i][1] == stones[j][1]:
+                    adjacent[i].append(j)
+                    adjacent[j].append(i)
+        count = 0
+        def dfs(stone):
+            visited[stone] = True
+            for i in adjacent[stone]:
+                if not visited[i]:
+                    dfs(i)
+        for i in range(n):
+            if not visited[i]:
+                count += 1
+                dfs(i)
+                
+        return n - count
