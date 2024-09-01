@@ -1,0 +1,14 @@
+class Solution:
+    def construct2DArray(self, original: List[int], m: int, n: int) -> List[List[int]]:
+        
+        if m * n != len(original):
+            return []
+        adjac = [[0 ]  * n for j in range(m)]
+        i = 0
+        z = 0
+        while i < m:
+            for j in range(n):
+                adjac[i][j]  = original[z]
+                z += 1
+            i +=1
+        return adjac
