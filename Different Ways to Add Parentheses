@@ -1,0 +1,25 @@
+class Solution:
+    def diffWaysToCompute(self, expre: str) -> List[int]:
+        result = []
+        if len(expre) == 0:
+            return result
+        if len(expre) == 1:
+            return [int(expre)]
+        if len(expre) == 2 and expre[0].isdigit():
+            return [int(expre)]
+            
+        for i,chart in enumerate(expre):
+            if chart.isdigit():
+                continue
+            left = self.diffWaysToCompute(expre[:i])
+            right = self.diffWaysToCompute(expre[i+1:])
+            
+            for li in left:
+                for ri in right:
+                    if chart == '*':
+                        result.append(li * ri)
+                    elif chart == '-':
+                        result.append(li - ri)
+                    elif chart == '+':
+                        result.append(li + ri)
+        return result
