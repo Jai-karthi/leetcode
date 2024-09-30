@@ -1,0 +1,32 @@
+class AllOne:
+
+    def __init__(self):
+        self.h = {}
+
+    def inc(self, key: str) -> None:
+        self.h[key] = self.h.get(key,0) + 1
+
+    def dec(self, key: str) -> None:
+        self.h[key] = self.h.get(key,0) - 1
+        if self.h[key] == 0:
+            del self.h[key]
+    def getMaxKey(self) -> str:
+        if self.h:
+            return list(self.h.keys())[list(self.h.values()).index(max(self.h.values()))]
+        else:
+            return ""
+    def getMinKey(self) -> str:
+        if self.h:
+            # for i in self.h:
+            #     if self.h[i] == min(self.h.values()) :
+            #         return i
+            return list(self.h.keys())[list(self.h.values()).index(min(self.h.values()))]
+        else:
+            return ""
+
+# Your AllOne object will be instantiated and called as such:
+# obj = AllOne()
+# obj.inc(key)
+# obj.dec(key)
+# param_3 = obj.getMaxKey()
+# param_4 = obj.getMinKey()
