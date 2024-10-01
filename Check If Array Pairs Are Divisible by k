@@ -1,0 +1,19 @@
+class Solution:
+    def canArrange(self, arr: List[int], k: int) -> bool:
+        remainder = {}
+
+        for i in range(len(arr)):
+            if arr[i] % k not in remainder:
+                remainder[arr[i] % k] = 1
+            else:
+                remainder[arr[i] % k] += 1
+        for i in arr:
+            rem = (i ) % k
+            if rem == 0:
+                if remainder[rem] % 2 == 1:
+                    return False
+            
+            elif remainder[rem] != remainder.get(k -rem,0):
+                return False
+            print(k-rem)
+        return True 
