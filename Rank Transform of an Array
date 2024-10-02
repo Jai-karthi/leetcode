@@ -1,0 +1,11 @@
+class Solution:
+    def arrayRankTransform(self, arr: List[int]) -> List[int]:
+        ar = {}
+
+        st =  sorted(arr)
+        rank = 1
+        for i in range(len(st)):
+            if i > 0 and st[i] > st[i-1] :
+                rank += 1
+            ar[st[i]] = rank
+        return [ar[i] for i in arr]
