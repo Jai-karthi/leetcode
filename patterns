@@ -1,0 +1,398 @@
+# pattern 7,8,9
+#       *       
+#       ***      
+#      *****     
+#     *******    
+#   *********   
+#   ***********  
+#  ************* 
+# ***************
+
+# ***************
+#  ************* 
+#   ***********  
+#   *********   
+#     *******    
+#      *****     
+#       ***      
+#       * 
+# n = 8
+# # for i in range(n):
+# #     for j in range(n - i - 1):
+# #         print(" "  ,end = "")
+# #     for j in range(2*i+1 ):
+# #         print("*" ,end = "")
+# #     for j in range(n - i - 1):
+# #         print(" " , end = "")
+# #     print()
+# for i in range(n - 1,-1,-1):
+#     for j in range(n - i - 1):
+#         print(" "  ,end = "")
+#     for j in range(2*i+1 ):
+#         print("*" ,end = "")
+#     for j in range(n - i - 1):
+#         print(" " , end = "")
+#     print()
+# patter 10
+# * 
+# * * 
+# * * * 
+# * * * * 
+# * * * * * 
+# * * * * * * 
+# * * * * * 
+# * * * * 
+# * * * 
+# * * 
+# * 
+# n = 6
+# for i in range(2*n):
+#     st = i
+#     if i > n: st = 2*n - i
+#     for j in range(st):
+#         print("*" ,end=" ")
+#     print()
+# patter 11
+# # 1
+# # 01
+# # 101
+# # 0101
+# # 10101
+# # 010101
+
+# # ===
+
+# n = 7
+# st = 1
+# for i in range(n):
+#     if i  %  2  == 0:  st = 0
+#     else:
+#         st = 1
+#     for j in range(i):
+#         print(st,end = "")
+#         st =  1-st
+#     print()
+pattern 12
+# 1           1
+# 12         21
+# 123       321
+# 1234     4321
+
+# n = 7
+# st = 2*n+1
+# for i in range(1,n):
+#     for j in range(1,i - 1):
+#         print(j ,end = "")
+#     for j in range(st ):
+#         print(" " ,end = "")
+#     for j in range(i-2,0,-1):
+#         print(j , end = "")
+#     print()
+#     st -= 2
+
+
+# Online Python compiler (interpreter) to run Python online.
+# Write Python 3 code in this online editor and run it.
+print("Try programiz.pro")
+# pattern = 14
+# A
+# AB
+# ABC
+# ABCD
+# ABCDE
+
+# === C
+# n = 6
+# num = 1
+# for i in range(n ):
+#     for j in range(i):
+#         print(chr(num + 64),end="")
+#         num += 1
+#     print()
+#     num = 1
+# pattern = 15
+# ABCDE
+# ABCD
+# ABC
+# AB
+# A
+
+
+# n = 5
+# num = 1
+# for i in range(n,-1,-1):
+#     for j in range(i):
+#         print(chr(num + 64),end="")
+#         num += 1
+#     print()
+#     num = 1
+# pattern = 16
+# A
+# BB
+# CCC
+# DDDD
+# EEEEE
+# FFFFFF
+
+# n = 6
+# num = 1
+# for i in range(1,n + 1):
+#     for j in range(i):
+#         print(chr(num + 64),end="")
+#     num += 1
+#     print()
+
+# pattern = 17
+
+#       A       
+#       ABA      
+#      ABCBA     
+#     ABCDCBA    
+#   ABCDEDCBA   
+#   ABCDEFEDCBA  
+#  ABCDEFGFEDCBA 
+# ABCDEFGHGFEDCBA
+
+# n = 8
+# for i in range(n):
+#     for j in range(n - i - 1):
+#         print(" "  ,end = "")
+#     ch = ord("A")
+#     breakpoints = (2*i+1)//2;
+#     for j in range(2*i+1 ):
+#         print(chr(ch),end = "")
+#         if j >= breakpoints: ch -= 1
+#         else:
+#             ch += 1
+
+#     for j in range(n - i - 1):
+#         print(" " , end = "")
+#     print()
+
+
+
+# # pattern = 18
+# E
+# DE
+# CDE
+# BCDE
+# ABCDE
+
+# n = 6
+# num = 1
+# for i in range(n):
+#     for j in range((64 + n - 1 ) - i ,64 + n - 1):
+#         print(chr(j + 1),end="")
+#         num += 1
+#     print()
+#     num = 1
+
+# **********
+# ****  ****
+# ***    ***
+# **      **
+# *        *
+# *        *
+# **      **
+# ***    ***
+# ****  ****
+# **********
+# def pattern19(N):
+#     # for the upper half of the pattern
+#     iniS = 0
+#     for i in range(N):
+#         # for printing the stars in the row
+#         for j in range(N - i):
+#             print('*', end='')
+        
+#         # for printing the spaces in the row
+#         for j in range(iniS):
+#             print(' ', end='')
+        
+#         # for printing the stars in the row
+#         for j in range(N - i):
+#             print('*', end='')
+        
+#         # The spaces increase by 2 every time we hit a new row
+#         iniS += 2
+        
+#         # Move to the next row and give a line break
+#         print()
+    
+#     # for the lower half of the pattern
+#     iniS = 2 * N - 2
+#     for i in range(1, N + 1):
+#         # for printing the stars in the row
+#         for j in range(i):
+#             print('*', end='')
+        
+#         # for printing the spaces in the row
+#         for j in range(iniS):
+#             print(' ', end='')
+        
+#         # for printing the stars in the row
+#         for j in range(i):
+#             print('*', end='')
+        
+#         # The spaces decrease by 2 every time we hit a new row
+#         iniS -= 2
+        
+#         # Move to the next row and give a line break
+#         print()
+
+# def main():
+#     N = 5
+#     pattern19(N)
+
+# if __name__ == "__main__":
+#     main()
+
+# pattern 20
+# *        *
+# **      **
+# ***    ***
+# ****  ****
+# **********
+# ****  ****
+# ***    ***
+# **      **
+# *        *
+
+# def pattern20(n):
+#     # initializing the spaces
+#     spaces = 2 * n - 2
+    
+#     # Outer loop for printing row
+#     for i in range(1, 2 * n):
+#         # stars for first half
+#         stars = i
+        
+#         # stars for the second half
+#         if i > n:
+#             stars = 2 * n - i
+        
+#         # for printing the stars
+#         for j in range(stars):
+#             print('*', end='')
+        
+#         # for printing the spaces
+#         for j in range(spaces):
+#             print(' ', end='')
+        
+#         # for printing the stars
+#         for j in range(stars):
+#             print('*', end='')
+        
+#         # Move to the next row and give a line break
+#         print()
+#         if i < n:
+#             spaces -= 2
+#         else:
+#             spaces += 2
+
+# def main():
+#     n = 5
+#     pattern20(n)
+
+# if __name__ == "__main__":
+#     main()
+
+# pattern 21
+# *****
+# *   *
+# *   *
+# *   *
+# *****
+
+# def pattern21(n):
+#     # outer loop for no. of rows.
+#     for i in range(n):
+        
+#         # inner loop for printing the stars at borders only.
+#         for j in range(n):
+            
+#             if i == 0 or j == 0 or i == n - 1 or j == n - 1:
+#                 print("*", end="")
+                
+#             # if not border index, print space.
+#             else:
+#                 print(" ", end="")
+        
+#         # As soon as the stars for each iteration are printed, we move to the
+#         # next row and give a line break otherwise all stars
+#         # would get printed in 1 line.
+#         print()
+
+# # Here, we have taken the value of N as 5.
+# # We can also take input from the user.
+# N = 5
+
+# pattern21(N)
+# pattern 22
+# 5 5 5 5 5 5 5 5 5 
+# 5 4 4 4 4 4 4 4 5 
+# 5 4 3 3 3 3 3 4 5 
+# 5 4 3 2 2 2 3 4 5 
+# 5 4 3 2 1 2 3 4 5 
+# 5 4 3 2 2 2 3 4 5 
+# 5 4 3 3 3 3 3 4 5 
+# 5 4 4 4 4 4 4 4 5 
+# 5 5 5 5 5 5 5 5 5 
+
+# def pattern22(n):
+#     # Outer loop for no. of rows
+#     for i in range(2 * n - 1):
+        
+#         # inner loop for no. of columns.
+#         for j in range(2 * n - 1):
+            
+#             # Initializing the top, down, left and right indices of a cell.
+#             top = i
+#             bottom = j
+#             right = (2 * n - 2) - j
+#             left = (2 * n - 2) - i
+            
+#             # Min of 4 directions and then we subtract from n
+#             # because previously we would get a pattern whose border
+#             # has 0's, but we want with border N's and then decreasing inside.
+#             print((n - min(min(top, bottom), min(left, right))), end=" ")
+        
+#         # As soon as the numbers for each iteration are printed, we move to the
+#         # next row and give a line break otherwise all numbers
+#         # would get printed in 1 line.
+#         print()
+
+# # Here, we have taken the value of N as 5.
+# # We can also take input from the user.
+# N = 5
+
+pattern22(N)
+
+#   1 
+#   1 2 1 
+# 1 4 6 4 1 
+
+# n = 5
+# def factorial(n):
+#     return 1 if (n==1 or n==0) else n * factorial(n - 1) 
+    
+# for i in range(n):
+#     for j in range( n - i - 3 ):
+#         print(" ",end = " ")
+#     if i % 2 != 0:
+#         continue
+#     for j in range(i +1):
+#         print(factorial(i)//(factorial(j)*factorial(i-j)),end =" ")
+#     print()
+#     1 
+#      1 1 
+#     1 2 1 
+#   1 3 3 1 
+#   1 4 6 4 1 
+
+# for i in range(n):
+#     for j in range( n - i + 1 ):
+#         print(end = " ")
+#     for j in range(i + 1):
+#         print(factorial(i)//(factorial(j)*factorial(i-j)),end =" ")
+#     print()
