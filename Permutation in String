@@ -1,0 +1,13 @@
+
+from collections import Counter
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        rang = len(s1)
+        maps = Counter(s1)
+        for i in range(len(s2)):
+
+            if maps ==  Counter(s2[i:rang]):
+                return True
+            rang += 1
+
+        return False
