@@ -1,0 +1,10 @@
+class Solution:
+    def findIntersectionValues(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        return [self.check_for_elements(nums1,nums2), self.check_for_elements(nums2, nums1)]
+
+    def check_for_elements(self, list_1, list_2):
+        count = 0
+        for i in list_1:
+            if i in list_2:
+                count +=1
+        return count
