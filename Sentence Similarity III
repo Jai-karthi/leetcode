@@ -1,0 +1,13 @@
+from collections import deque
+class Solution:
+    def areSentencesSimilar(self, sentence1: str, sentence2: str) -> bool:
+        s1,s2 = deque(sentence1.split()),deque(sentence2.split())
+        while s2 and s1 and s2[0] == s1[0] :
+            s2.popleft()
+            s1.popleft()
+            
+        while s2 and s1 and s2[-1] == s1[-1] :
+            s2.pop()
+            s1.pop()
+            
+        return not s1 or not s2
