@@ -1,0 +1,14 @@
+class Solution:
+    def minGroups(self, intervals: List[List[int]]) -> int:
+        start  = sorted((i[0] for i in intervals))
+        end = sorted((i[1] for i in intervals))
+        print(start)
+        print(end)
+        grup = 0
+        ended= 0
+        for st in start:
+            if st > end[ended]:
+                ended += 1
+            else:
+                grup += 1
+        return grup
