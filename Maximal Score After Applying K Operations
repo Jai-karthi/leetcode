@@ -1,0 +1,12 @@
+class Solution:
+    def maxKelements(self, nums: List[int], k: int) -> int:
+        ans = 0 
+        nums = [-i for i in nums]
+        
+        heapq.heapify(nums)
+        while k:
+            get = -heapq.heappop(nums)
+            ans +=  get
+            k -= 1
+            heapq.heappush(nums,-ceil(get / 3))
+        return ans
