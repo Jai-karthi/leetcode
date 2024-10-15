@@ -1,0 +1,10 @@
+class Solution:
+    def minimumSteps(self, s: str) -> int:
+        cur_ind = 0
+        tota_swap = 0
+        for i , cha in enumerate(s):
+            if cha == "0":
+                tota_swap += i - cur_ind
+                cur_ind += 1
+    
+        return tota_swap
