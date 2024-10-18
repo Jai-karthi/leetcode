@@ -1,0 +1,16 @@
+class Solution:
+    def countMaxOrSubsets(self, nums: List[int]) -> int:
+        def subset(nums,i,a,ans,maxi):
+            if i == len(nums):
+                fi = 0
+                for i in range(len(a)):
+                    fi |=  a[i]
+                    maxi = max(maxi,fi)
+                ans.append(maxi)
+                return 
+            a.append(nums[i])
+            subset(nums,i+ 1,a,ans,maxi)
+            a.pop()
+            subset(nums,i + 1,a,ans,maxi)
+            return ans
+        return subset(nums,0,[],[],0).count(max(subset(nums,0,[],[],0)))
