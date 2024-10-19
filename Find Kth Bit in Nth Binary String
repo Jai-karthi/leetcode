@@ -1,0 +1,18 @@
+class Solution:
+    def findKthBit(self, n: int, k: int) -> str:
+        si = "0"
+        prevbit = "0"
+        def reverse(prevbit):
+            d = ""
+            for i in prevbit:
+                if i == "0" :
+                    d += "1"
+                else:
+                    d += "0"
+            return d[::-1]
+            
+        for i in range(n-1):
+            si = prevbit + "1" + reverse(prevbit) 
+            prevbit = si
+            
+        return si[k-1]
