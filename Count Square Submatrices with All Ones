@@ -1,0 +1,22 @@
+class Solution:
+    def countSquares(self, matrix: List[List[int]]) -> int:
+        def count_sq(dp,matrix,i,j):
+            if i >= len(matrix) or j >= len(matrix[0]):
+                return 0
+            if matrix[i][j] == 0:
+                return 0
+            if dp[i][j] != -1:
+                return dp[i][j]
+            below = count_sq(dp,matrix,i + 1,j)
+            right = count_sq(dp,matrix,i,j+ 1)
+            diganol = count_sq(dp,matrix,i+1,j+ 1)
+            dp[i][j] = min(below,right,diganol) + 1
+            return dp[i][j]
+        dp = [[-1 for _ in range(len(matrix[0]))] for  _ in range(len(matrix)) ]
+        ans = 0
+        for i in range(len(matrix)):
+            for j in range(len(matrix[0])):
+                if matrix[i][j]:
+                    ans += count_sq(dp,matrix,i,j)
+                    
+        return ans
