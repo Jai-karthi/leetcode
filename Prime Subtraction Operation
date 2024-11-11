@@ -1,0 +1,43 @@
+class Solution:
+    def primeSubOperation(self, nums: List[int]) -> bool:
+        # def prime(intg):
+        #     min_ = -float('inf')
+        #     for num in range(intg ):
+        #         if num > 1:
+        #             for i in range(2,num):
+        #                 if (num % i) == 0: 
+        #                     break
+        #             else:
+        #                 min_ = max(num ,min_)
+        #     return intg-min_
+            
+        # for i in range(len(nums)):
+        #     nums[i] = prime(nums[i])
+        #     if nums == sorted(nums) :
+        #         return True
+        # return False
+
+        max_element = max(nums)
+        seive = [0]  * (max_element +1)
+        seive[1] = 0
+        seive[0] = 0
+        for num in range(2,max_element):
+            for j in range(2,num):
+                if num % j ==0:
+                    break 
+            else:
+                seive[num] = 1
+                
+        i = 0
+        curr = 1
+        while i < len(nums):
+            diff = nums[i] - curr
+            if diff < 0:
+                return False
+                break
+            if seive[diff] or diff == 0:
+                i+= 1
+                curr += 1
+            else:
+                curr += 1
+        return True
