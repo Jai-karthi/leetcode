@@ -1,0 +1,22 @@
+class Solution:
+    def maximumBeauty(self, items: List[List[int]], queries: List[int]) -> List[int]:
+        items.sort()
+        max_it = items[0][1]
+        for i in range(len(items)):
+            max_it = max(max_it ,items[i][1])
+            items[i][1] = max_it
+
+        return [self.search(items,q) for q in queries ]
+
+    def search(self,items,target):
+        left = 0
+        right = len(items)-1
+        max_h = 0
+        while left <= right :
+            mid = (left + right )//2
+            if items[mid][0] >target:
+                right -= 1
+            else:
+                max_h = max(max_h,items[mid][1])
+                left += 1
+        return max_h
