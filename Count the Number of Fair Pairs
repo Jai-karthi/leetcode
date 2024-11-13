@@ -1,0 +1,16 @@
+class Solution:
+    def countFairPairs(self, nums: List[int], lower: int, upper: int) -> int:
+        nums.sort()
+        def binary_search (nums,val):
+            left =  0
+            right = len(nums)-1
+            result = 0
+            while left < right:
+                sum = nums[left] + nums[right]
+                if sum < val:
+                    result += right - left
+                    left += 1
+                else:
+                    right -= 1
+            return result
+        return  binary_search(nums,upper +1) - binary_search(nums,lower ) 
