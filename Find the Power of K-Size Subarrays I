@@ -1,0 +1,15 @@
+class Solution:
+    def resultsArray(self, nums: List[int], k: int) -> List[int]:
+        if k == 1:
+            return nums
+        n = len(nums)
+        res = [-1] * (n - k + 1)
+        count = 1
+        for ind in range(n - 1):
+            if nums[ind] + 1 == nums[ind + 1]:
+                count += 1
+            else:
+                count = 1
+            if count >= k:
+                res[(ind + 2) - k ] = nums[ind +1] 
+        return res
