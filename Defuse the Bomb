@@ -1,0 +1,12 @@
+class Solution:
+    def decrypt(self, code: List[int], k: int) -> List[int]:
+        if k == 0:
+            return [0] * len(code)
+        res = []
+        for i in range(len(code)):
+            x = code[i+1:  ] + code[:i]
+            if k < 0:
+                res.append(sum(x[k:]))
+            elif k > 0:
+                res.append(sum(x[:k]))
+        return res
