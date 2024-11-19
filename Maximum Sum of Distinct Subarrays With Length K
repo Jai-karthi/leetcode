@@ -1,0 +1,12 @@
+
+class Solution:
+    def maximumSubarraySum(self, nums: List[int], k: int) -> int:
+        res = 0
+        for i in range(len(nums)-(k-1)):
+            sub_arr =nums[i:k+i]
+            for j in sub_arr:
+                if sub_arr.count(j) > 1:
+                    break
+            else:
+                res = max(res,sum(sub_arr))
+        return res
