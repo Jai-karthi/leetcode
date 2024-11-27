@@ -1,0 +1,22 @@
+class Solution:
+    def shortestDistanceAfterQueries(self, n: int, queries: List[List[int]]) -> List[int]:
+        h = defaultdict(list)
+        def dfs(h,m ,path,dp):
+            if m == n-1:
+                return 0
+            if dp[m] :
+                return dp[m]
+            path = n
+            for i in h[m]:
+                path = min(path,dfs(h,i,path,dp) + 1)
+            dp[m] = path
+            return path
+        for i in range(n-1):
+            h[i].append(i+1)
+        dp = [0] * n
+        res = []
+        for i, j in queries:
+            h[i].append(j)
+            res.append(dfs(h,0,n,dp))
+            dp = [0] * n
+        return res
