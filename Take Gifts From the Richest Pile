@@ -1,0 +1,12 @@
+class Solution:
+    def pickGifts(self, gifts: List[int], k: int) -> int:
+        n = len(gifts)
+        for second in range(k):
+            cur = 0 
+            for i in  range(n):
+                if gifts[cur] < gifts[i]:
+                    cur = i
+            gifts[cur] = math.floor(math.sqrt(gifts[cur] ))
+
+        res = sum(gifts)
+        return res
