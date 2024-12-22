@@ -1,0 +1,49 @@
+
+
+class Solution:
+    def leftmostBuildingQueries(self, heights, queries):
+        n, q = len(heights), len(queries)
+        result = [-1] * q
+        deferred = [[] for _ in range(n)]
+        pq = []
+
+        for i in range(q):
+            a, b = queries[i]
+            if a > b:
+                a, b = b, a
+            if a == b or heights[a] < heights[b]:
+                result[i] = b
+            else:
+                deferred[b].append((heights[a], i))
+
+        for i in range(n):
+            for query in deferred[i]:
+                heapq.heappush(pq, query)
+            while pq and pq[0][0] < heights[i]:
+                result[pq[0][1]] = i
+                heapq.heappop(pq)
+
+        return result
+
+
+res = []
+
+def check(a,b):
+    if a < b and heights[a] < heights[b] or a ==b:
+        return b
+    i = a 
+    j = b 
+    while i < len(heights) and j < len(heights):
+        if heights[a] < heights[i] and heights[b] < heights[j] and i == j :
+            return j
+        if i < j :
+            i = b
+        if i > j:
+            j = a
+        i += 1
+        j += 1
+    return -1
+            
+for alice,bob in queries:
+    res.append(check(alice,bob))
+print(res)
