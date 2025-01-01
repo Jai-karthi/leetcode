@@ -1,0 +1,17 @@
+class Solution:
+    def maxScore(self, s: str) -> int:
+        l = 1
+        r = 1
+        rs = ''
+        ls = ''
+        res = 0
+        while l <= r and r != len(s):
+            ls += s[:l]
+            rs += s[r:]
+            print(ls , '  ', rs)
+            res = max(res,ls.count('0') + rs.count('1'))
+            l+=1
+            r+=1
+            ls = ''
+            rs = ''
+        return res
