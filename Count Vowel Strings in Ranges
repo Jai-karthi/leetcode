@@ -1,0 +1,18 @@
+class Solution:
+    def vowelStrings(self, words: List[str], queries: List[List[int]]) -> List[int]:
+        v = 'aeiou'
+        prefix_sum = []
+        count = 0
+        ans = []
+        for  i in words:
+            t = i
+            if t[0] in v and t[-1] in v:
+                count += 1
+            prefix_sum.append(count)
+        for i in range(len(queries)):
+            current_query = queries[i]
+            ans.append( prefix_sum[current_query[1]] - (
+                0 if current_query[0] == 0 else prefix_sum[current_query[0] - 1]
+            ))
+
+        return ans
