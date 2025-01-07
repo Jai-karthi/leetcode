@@ -1,0 +1,11 @@
+class Solution:
+    def stringMatching(self, words: List[str]) -> List[str]:
+        words.sort(key=lambda word :len(word))
+        ar = []
+        for i in range(len(words)) :
+            take = words[i]
+            for j in range(i+1,len(words)):
+                if take in  words[j]:
+                    ar.append(take)
+                    break
+        return ar
