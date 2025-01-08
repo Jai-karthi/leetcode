@@ -1,0 +1,15 @@
+class Solution:
+    def countPrefixSuffixPairs(self, words: List[str]) -> int:
+
+        def prefixandsuffix(w1,w2):
+            l = len(w1)
+            return w1 == w2[:l]  and w1 == w2[len(w2) - l:]
+           
+        count  = 0
+        for i in range(len(words)):
+            l = len(words[i])
+            for j in range(i+1,len(words)):
+                if prefixandsuffix(words[i],words[j]):
+                    count += 1
+
+        return count
