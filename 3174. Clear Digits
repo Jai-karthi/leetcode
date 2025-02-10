@@ -1,0 +1,10 @@
+class Solution:
+    def clearDigits(self, s: str) -> str:
+        stack  = [] 
+        for i in s:
+            if ord(i) >= 48 and ord(i) <= 57 and len(stack) >= 1:
+                print(True,i)
+                stack.pop()
+            else:
+                stack.append(i)
+        return ''.join(stack)
