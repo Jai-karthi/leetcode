@@ -1,0 +1,6 @@
+class Solution:
+    def removeOccurrences(self, s: str, part: str) -> str:
+
+        while  part in s : 
+            s = s[:s.index(part)] + '' + s[s.index(part) + len(part):]
+        return s Remove All Occurrences of a Substring
