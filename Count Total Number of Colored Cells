@@ -1,0 +1,9 @@
+class Solution:
+    def coloredCells(self, n: int) -> int:
+        num_of_col = 4
+        add = 1
+        while n - 1:
+            add += num_of_col
+            num_of_col += 4
+            n -= 1
+        return add
