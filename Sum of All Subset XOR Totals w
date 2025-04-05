@@ -1,0 +1,23 @@
+
+class Solution:
+    def subsetXORSum(self, nums: List[int]) -> int:
+        
+        def subset(nums,index,sset,subsets):
+            if index == len(nums):
+                subsets.append(sset[:])
+                return
+            sset.append(nums[index])
+            subset(nums,index + 1 ,sset,subsets )
+            sset.pop()
+            subset(nums,index + 1 ,sset,subsets )
+
+        subsets = []
+        subset(nums,0,[],subsets)
+        result = 0
+        for subset in subsets:
+            subset_XOR_total = 0
+            for num in subset:
+                subset_XOR_total ^= num
+            result += subset_XOR_total
+
+        return result
