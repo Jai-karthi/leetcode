@@ -1,0 +1,12 @@
+class Solution:
+    def maxDiff(self, num: int) -> int:
+        # x = (0,9)
+        # y = (0,9)
+        min_ = max_= num
+        for i in range(0,10):
+            for j in range(0,10):
+                getval = str(num).replace(str(i),str(j))
+                if getval[0] != '0':
+                    min_ = min(min_,int(getval))
+                    max_ = max(max_,int(getval))
+        return max_ - min_
