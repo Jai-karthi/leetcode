@@ -1,0 +1,19 @@
+class Solution:
+    def maxValue(self, events: List[List[int]], k: int) -> int:
+        events.sort()
+        n = len(events)
+        start_days = [e[0] for e in events]
+        @lru_cache(None)
+        def dp(i, remaining):
+            if i == n or remaining == 0:
+                return 0
+
+             not_take = dp(i + 1, remaining)
+
+           
+            next_i = bisect_right(start_days, events[i][1])
+            take = events[i][2] + dp(next_i, remaining - 1)
+
+            return max(take, not_take)
+
+        return dp(0, k)
